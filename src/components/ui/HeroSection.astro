@@ -1,0 +1,49 @@
+---
+import Button from './Button.astro';
+
+interface Props {
+  title: string;
+  subtitle: string;
+  ctaText?: string;
+  ctaHref?: string;
+  backgroundImage?: string;
+}
+
+const { 
+  title, 
+  subtitle, 
+  ctaText = "Get a Free Quote", 
+  ctaHref = "/contact",
+  backgroundImage = "/images/hero.png"
+} = Astro.props;
+---
+
+<section class="relative bg-slate-900 py-24 sm:py-32 overflow-hidden flex items-center min-h-[80vh]">
+  <div class="absolute inset-0">
+    <img 
+      src={backgroundImage} 
+      alt="Lawn care background" 
+      class="h-full w-full object-cover opacity-40"
+    />
+    <div class="absolute inset-0 bg-gradient-to-r from-slate-900/90 via-slate-900/70 to-transparent"></div>
+  </div>
+  
+  <div class="relative mx-auto max-w-7xl px-6 lg:px-8 z-10">
+    <div class="max-w-2xl">
+      <h1 class="text-4xl font-bold tracking-tight text-white sm:text-6xl mb-6">
+        {title}
+      </h1>
+      <p class="mt-6 text-lg leading-8 text-slate-300 mb-10">
+        {subtitle}
+      </p>
+      <div class="flex items-center gap-x-6">
+        <Button href={ctaHref} size="lg">
+          {ctaText}
+        </Button>
+        <Button href="/services" variant="outline" class="!border-white !text-white hover:!bg-white/10" size="lg">
+          Our Services <span aria-hidden="true" class="ml-2">→</span>
+        </Button>
+      </div>
+    </div>
+  </div>
+</section>
