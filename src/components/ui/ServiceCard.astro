@@ -1,0 +1,45 @@
+---
+import { Image } from 'astro:assets';
+
+interface Props {
+  title: string;
+  description: string;
+  image?: string;
+  href: string;
+}
+
+const { title, description, image, href } = Astro.props;
+---
+
+<a href={href} class="group block overflow-hidden rounded-2xl bg-white shadow-sm ring-1 ring-slate-200 transition-all hover:shadow-md hover:ring-primary-500">
+  {image ? (
+    <div class="aspect-[4/3] w-full overflow-hidden bg-slate-100">
+      <img 
+        src={image} 
+        alt={title} 
+        class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+        loading="lazy"
+      />
+    </div>
+  ) : (
+    <div class="aspect-[4/3] w-full bg-primary-50 flex items-center justify-center">
+      <svg class="h-12 w-12 text-primary-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+      </svg>
+    </div>
+  )}
+  <div class="p-6">
+    <h3 class="text-xl font-semibold text-slate-900 mb-2 group-hover:text-primary-700 transition-colors">
+      {title}
+    </h3>
+    <p class="text-slate-600 line-clamp-3">
+      {description}
+    </p>
+    <div class="mt-4 flex items-center text-primary-600 font-medium">
+      Learn more
+      <svg class="ml-1 h-4 w-4 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+      </svg>
+    </div>
+  </div>
+</a>
